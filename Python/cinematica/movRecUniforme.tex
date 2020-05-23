@@ -1,0 +1,86 @@
+\documentclass[a4paper,10p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+Sabemos que para poder describir la trayectoria de una particula, es necesario conocer su posicion a traves del tiempo, es decir, la posición como función del tiempo, $x(t)$. Con esto podemos obtener por medio de condiciones iniciales todos los puntos de la trayectoria. 
+\newline
+
+Consideremos el caso discreto, consideremos el intervalo de tiempo $t \in [t_0,t_1]$, si lo particionamos en $N$ partes iguales de tamaño $\Delta t = \frac{t_1-t_0}{N}$, de modo que   podemos escribir el tiempo $t_n$ como:
+
+\begin{eqnarray*}
+    t_n = t_0 + n\Delta t.    
+\end{eqnarray*}
+
+Por lo que si llamamos $x_n(t_n)$ a la posicion en la que se encuentra la particula en el tiempo $t_n$. Entonces solo basta encontrar una expresión para describir la misma posicion en pero en un tiempo posterior, $x_n(t_n + \Delta t)$ en terminos de $x_n(t_n)$, con $\Delta t$ lo suficientemente pequeño $\Delta t \rightarrow 0$, para poder hacer una aproximación en terminos de una serie de Taylor al rededor de $t_n$.
+\newline
+
+\begin{eqnarray*}
+x_n(t_n + \Delta t) = \sum_{n=0}^{\infty} \frac{\Delta t^n}{n!} \left. \frac{d^{(n)} }{d t_n^{(n)}}  x_n(t_n) \right|_{\Delta t}    
+\end{eqnarray*}
+
+Si despresiamos terminos de segundo orden $O(t_n^2)$, entonces tenenmos,
+
+\begin{eqnarray*}
+    x_n(t_n + \Delta t) \approx x_n(t_n) +  \left. \frac{d x_n}{d t_n} \right|_{\Delta t} \Delta t.
+\end{eqnarray*}
+    
+Observación,
+
+\begin{eqnarray*}
+    t_n + \Delta t &=& t_0 + n\Delta t + \Delta t,\\
+                   &=& t_0 + (n+1)\Delta t,\\
+                   &=& t_{n+1}.
+\end{eqnarray*}
+
+Por lo tanto podemos escribir,
+
+\begin{equation}
+    x_n(t_{n+1}) = x_n(t_n) +  v(t_n) \Delta t.
+\end{equation}
+
+Donde $v(t_n) = \left. \frac{d x_n}{d t_n} \right|_{\Delta t}$ la podemos definir como la velocidad de la particula en el tiempo $t_n$. De modo que solo basta con especificar la dependencia tiene la velocidad, en general $v(t_n,x_n)$ y la condición inicial para determinar la trayectoria de la particula al menos a primer orden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,137 @@
+#! /bin/bash
+
+		#	Mi configuracion de bspwm
+		#	CallmeDav
+		#	My bspwm
+###################################################################
+		#Aplicaciones que incian en segundo plano
+###################################################################
+sxhkd &
+
+#Fija el tema del cursor
+xsetroot -cursor_name left_ptr &
+
+#Fija mi distribución del teclado
+setxkbmap -layout latam &
+
+xrdb ~/.Xresources &
+
+#Matar procesos al iniciar bspwm
+killall compton dunst glava
+
+#Iniciar compocitor
+compton &
+
+#Iniciar demonio de notificaciones
+dunst &
+
+#Portapapeles
+copyq &
+
+#Demonio de musica en terminal
+mpd &
+
+#Fijar colores y tema de mi terminal y wm
+wal -R
+
+#Glava visualizador de musica
+#glava --desktop &
+###################################################################
+			#Scripts de inicio
+###################################################################
+
+#Aplicaciones de autoinicio
+$HOME/.config/scripts/autostart.sh &
+
+#Panel de polybar
+$HOME/.config/polybar/launch.sh &
+
+#Fuente de colores
+. "${HOME}/.cache/wal/colors.sh" &
+
+#Manejar el brillo
+$HOME/.config/scripts/brillo.sh &
+#$HOME/music.sh 
+#conky -c ~/.config/conky/thinkpadIMG.conf &
+###################################################################
+		#Configuracion de BSPWM
+#:##################################################################
+
+			#Workspaces
+
+#Declaracion de areas de trabajo
+bspc monitor -d Home Web Code Math Music Social Sistem
+
+			#Color
+
+#Color de la ventana normal
+bspc config normal_border_color #737B86
+
+#Color de la ventana enfocada
+bspc config focused_border_color #436AAD
+
+#Color de preselección
+bspc config presel_feedback_color "$color15" 
+
+
+	#Separacion de ventanas y grosor del borde
+
+bspc config border_radius    15
+bspc config split_ratio    0.52
+#bspc config borderless_monocle    true
+
+#bspc config gapless_monocle    true
+
+
+Border=4
+gaps=18
+#Grosor del borde
+bspc config border_width         		$Border
+#Separacion de ventanas
+bspc config window_gap           		$gaps
+#Enfocar ventana solo desplazandose
+bspc config focus_follows_pointer 		true
+
+			#Margenes laterales
+lateral=2
+for side in right left ; do
+        bspc config ${side}_padding $lateral
+done
+
+		#Margenes Superiores e Inferiores
+sup=30
+for side in top bottom ; do
+        bspc config ${side}_padding $sup
+done
+
+###################################################################
+		#Reglas de las ventanas
+	      #Aplicaciones por Workspaces
+###################################################################
+
+#bspc rule -a Termite border=off
+
+bspc rule -a Matplotlib state=floating
+
+bspc rule -a MEGAsync state=floating
+			#Home
+bspc rule -a Conky desktop=\Home
+
+			#Web
+bspc rule -a Google-chrome-unstable desktop=\Web
+
+			#code-oss
+bspc rule -a code-oss desktop=\Code
+
+			#Math
+#bspc rule -a Zathura state=tiling
+			#Music
+bspc rule -a Spotify desktop=\Music state=floating
+bspc rule -a ncmpcpp desktop=\Music
+			#Social
+bspc rule -a TelegramDesktop desktop=\Social
+
+			#Sistem
+bspc rule -a Nitrogen desktop=\Sistem
+bspc rule -a Pavucontrol state=floating desktop=\Sistem
+bspc rule -a nm-conection-editor desktop=\Sistem
